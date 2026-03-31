@@ -14,6 +14,10 @@ FROM studies101.brightlearn.bright_coffee_shop_analysis;
 SELECT DISTINCT store_location 
 FROM studies101.brightlearn.bright_coffee_shop_analysis;
 
+--This is to show the number of stores
+SELECT COUNT(DISTINCT store_id) AS number_of_stores 
+FROM studies101.brightlearn.bright_coffee_shop_analysis;
+
 ---This shows us all the products they sell across all the stores
 SELECT DISTINCT product_category 
 FROM studies101.brightlearn.bright_coffee_shop_analysis;
@@ -122,7 +126,7 @@ SELECT transaction_id,
             ROUND(transaction_qty * unit_price, 2) AS total_amounts 
 FROM studies101.brightlearn.bright_coffee_shop_analysis
 ORDER BY transaction_date,
-              transaction_time
+        transaction_time
 );
 
 -- This is to see the busiest day and how much we made on each day of the week  
