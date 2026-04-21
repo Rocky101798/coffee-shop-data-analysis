@@ -1,100 +1,151 @@
-# Bright Coffee Shop Sales Analysis
+# ☕ Coffee Shop Sales Analysis
 
-## Project Overview
+## 📊 Overview
 
-This project analyzes historical transactional data from Bright Coffee Shop to generate business insights for decision-making. The goal is to help the company's new CEO understand sales performance, identify high-performing products, and improve overall revenue.
+This project analyzes transactional sales data from a coffee shop to uncover key business insights related to revenue, product performance, store performance, and customer purchasing patterns.
 
-The analysis focuses on identifying sales trends, peak business hours, and product performance using data analytics, SQL, and data visualization techniques.
+The goal is to transform raw data into meaningful insights that can support better business decisions.
 
-## Project Objectives
+---
 
-The main objectives of this project are:
+## 🧠 Business Problem
 
-- Identify which products generate the most revenue
-- Determine the best-performing time intervals for sales
-- Analyze sales trends across products and time periods
-- Provide recommendations to improve business performance
-- Support data-driven decision-making for management
+The business wants to better understand its performance by answering the following questions:
 
-## Dataset Description
+* Which store location generates the most revenue?
+* What are the busiest times of the day?
+* Which products perform the best and worst?
+* How can sales patterns help improve business strategy?
 
-The dataset contains daily transactional data from a coffee shop, including:
+---
 
-- Product details
-- Unit price
-- Quantity sold
-- Transaction time
-- Sales information
+## 🛠️ Tools & Technologies
 
-The data was processed and transformed to calculate total revenue and group transactions into time intervals for analysis.
+* **SQL (Google BigQuery)** – Data querying and analysis
+* **Power BI** – Dashboard creation and data visualization
+* **Excel** – Data exploration and pivot tables
+* **Miro** – Planning and structuring analysis
+* **AI Tools (e.g., Lovable)** – Supporting dashboard design and workflow
 
-## Data Processing Steps
+---
 
-The following steps were performed during data processing:
+## 📂 Dataset
 
-1. Converted the dataset from Excel format to CSV
-2. Loaded the data into a database environment
-3. Cleaned and transformed the data
-4. Created calculated fields such as:
+The dataset includes the following fields:
 
-   Total Amount = Unit Price × Transaction Quantity
+* transaction_id
+* transaction_date
+* transaction_time
+* transaction_qty
+* store_id
+* store_location
+* product_id
+* unit_price
+* product_category
+* product_type
+* product_detail
 
-5. Grouped transactions into time intervals
-6. Prepared the dataset for analysis and visualization
+A calculated field was created:
 
-## Tools and Technologies Used
+* **Revenue = transaction_qty × unit_price**
 
-- SQL
-- Databricks
-- Microsoft Excel
-- Power BI / Tableau
-- GitHub
-- Miro (for data architecture planning)
+---
 
-## Data Analysis
+## 🔍 Analysis Performed
 
-The processed dataset was analyzed using pivot tables and dashboards to identify:
+### 1. Revenue Analysis
 
-- Total revenue per product category
-- Best-selling products
-- Peak sales time intervals
-- Quantity of items sold
-- Sales performance trends
+Calculated total revenue across all transactions to measure overall business performance.
 
-Charts and visualizations were created to clearly present insights.
+### 2. Store Performance
 
-## Key Insights (Example)
+Compared revenue across different store locations to identify the top-performing branch.
 
-- Certain products generate significantly higher revenue than others
-- Sales peak during specific time periods
-- Some products are underperforming
-- Customer demand varies throughout the day
+### 3. Peak Hours Analysis
 
-## Recommendations
+Analyzed transaction times to determine the busiest hours of the day.
 
-Based on the analysis, the following recommendations can be made:
+### 4. Product Performance
 
-- Increase stock for best-selling products
-- Run marketing campaigns during slow sales periods
-- Promote underperforming products
-- Monitor sales performance regularly
-- Automate daily sales reporting
+Ranked products based on revenue to identify best-selling and lowest-performing items.
 
-## Project Structure
+### 5. Sales Trends
 
-This repository contains:
+Reviewed patterns in sales to understand customer behavior and peak activity periods.
 
-- Data processing scripts (SQL)
-- Processed dataset (Excel / CSV)
-- Data visualization dashboards
-- Presentation slides
-- Project documentation
-- README file
+---
 
-## Author
+## 📈 Key Insights
 
-Siphamandla Moyo
+* **Hell’s Kitchen** generated the highest revenue among all store locations.
+* The busiest sales period occurs between **8 AM and 10 AM**, indicating strong morning demand.
+* The top-performing product was **Sustainability Grown Organic (Large)**.
+* The lowest-performing product was **Dark Chocolate**, suggesting low customer demand.
+* Morning hours are a key revenue driver and should be prioritized in operations and staffing.
 
-## Submission
+---
 
-This project was created as part of a data analytics assignment focused on generating business insights from transactional sales data.
+## 💻 Example SQL Queries
+
+### Total Revenue by Store Location
+
+```sql
+SELECT 
+    store_location,
+    ROUND(SUM(transaction_qty * unit_price), 2) AS total_revenue
+FROM studies101.brightlearn.bright_coffee_shop_analysis
+GROUP BY store_location
+ORDER BY total_revenue DESC;
+```
+
+### Busiest Hours
+
+```sql
+SELECT 
+    EXTRACT(HOUR FROM transaction_time) AS sale_hour,
+    COUNT(*) AS total_transactions
+FROM studies101.brightlearn.bright_coffee_shop_analysis
+GROUP BY sale_hour
+ORDER BY total_transactions DESC;
+```
+
+### Top Products by Revenue
+
+```sql
+SELECT 
+    product_detail,
+    ROUND(SUM(transaction_qty * unit_price), 2) AS revenue
+FROM studies101.brightlearn.bright_coffee_shop_analysis
+GROUP BY product_detail
+ORDER BY revenue DESC;
+```
+
+---
+
+
+## 📚 What I Learned
+
+* Writing SQL queries for real-world datasets using BigQuery
+* Performing data aggregation and grouping for insights
+* Identifying business trends from raw data
+* Building dashboards to communicate findings clearly
+* Connecting data analysis to real business decisions
+
+---
+
+## 🚀 Future Improvements
+
+* Add monthly and yearly trend analysis
+* Perform deeper product category analysis
+* Include customer segmentation if data becomes available
+* Enhance dashboard interactivity
+
+---
+
+## 📌 Conclusion
+
+This project demonstrates how data analysis can be used to uncover actionable insights and support business decision-making in a retail environment.
+
+---
+
+⭐ *This project reflects my growing skills in SQL, data analysis, and business intelligence.*
