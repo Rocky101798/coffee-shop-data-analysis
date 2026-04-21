@@ -22,7 +22,7 @@ The business wants to better understand its performance by answering the followi
 ## 🛠️ Tools & Technologies
 
 * **SQL (Google BigQuery)** – Data querying and analysis
-* **Power BI** – Dashboard creation and data visualization
+* **Powerpoint** – Presentation creation 
 * **Excel** – Data exploration and pivot tables
 * **Miro** – Planning and structuring analysis
 * **AI Tools (e.g., Lovable)** – Supporting dashboard design and workflow
